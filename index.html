@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroChoco – Complemento Alimentario Natural Peruano</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background:#FAF3DC; color:#3E1F00; }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #1E0E00 0%, #8D5524 60%, #A0622A 100%);
+    padding: 2rem 1rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content:'';
+    position:absolute; bottom:-1px; left:0; right:0; height:40px;
+    background:#FAF3DC;
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .header img.logo { width:140px; height:140px; border-radius:50%; border:4px solid #F5C400; margin-bottom:1rem; }
+  .header h1 { font-size:2.4rem; color:#F5C400; letter-spacing:2px; text-shadow:2px 2px 8px rgba(0,0,0,0.5); }
+  .header h2 { font-size:1rem; color:#FFE082; margin-top:.4rem; letter-spacing:3px; }
+  .header .tagline { color:#fff; margin-top:.8rem; font-style:italic; font-size:.95rem; }
+
+  /* NAV */
+  nav { display:flex; justify-content:center; flex-wrap:wrap; gap:.5rem; padding:1.2rem; background:#8D5524; position:sticky; top:0; z-index:100; }
+  nav a { color:#F5C400; text-decoration:none; font-weight:700; font-size:.85rem; padding:.4rem .9rem; border:1.5px solid #F5C400; border-radius:20px; transition:.2s; }
+  nav a:hover { background:#F5C400; color:#3E1F00; }
+
+  /* SECTIONS */
+  section { max-width:900px; margin:2rem auto; padding:0 1rem; }
+  .card {
+    background:#fff;
+    border-radius:16px;
+    padding:1.8rem;
+    margin-bottom:1.5rem;
+    box-shadow:0 4px 18px rgba(141,85,36,.13);
+    border-left:6px solid #F5C400;
+  }
+  .card h3 { color:#8D5524; font-size:1.25rem; margin-bottom:1rem; display:flex; align-items:center; gap:.5rem; }
+  .card p, .card li { color:#4E2800; line-height:1.7; margin-bottom:.5rem; font-size:.97rem; }
+  .card ul { padding-left:1.2rem; }
+  .card ul li { margin-bottom:.4rem; }
+
+  /* HERO BENEFICIOS */
+  .beneficios-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; margin-top:1rem; }
+  .ben-item { background:linear-gradient(135deg,#FFF8DC,#FFE082); border-radius:12px; padding:1.2rem; text-align:center; border:2px solid #FFB300; }
+  .ben-item .icon { font-size:2rem; margin-bottom:.5rem; }
+  .ben-item h4 { color:#8D5524; font-size:.9rem; font-weight:700; }
+
+  /* INGREDIENTES */
+  .ing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1rem; margin-top:1rem; }
+  .ing-card { background:linear-gradient(135deg,#FFFDE7,#FFF3C4); border-radius:12px; padding:1rem; text-align:center; border:1.5px solid #FFB300; }
+  .ing-card .ing-icon { font-size:1.8rem; margin-bottom:.4rem; }
+  .ing-card h4 { color:#8D5524; font-size:.85rem; font-weight:700; margin-bottom:.3rem; }
+  .ing-card p { font-size:.78rem; color:#6D4C41; }
+
+  /* STATS */
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1rem; margin-top:1rem; }
+  .stat { background:#8D5524; border-radius:12px; padding:1.2rem; text-align:center; color:#fff; }
+  .stat .num { font-size:1.8rem; font-weight:900; color:#F5C400; }
+  .stat .label { font-size:.78rem; margin-top:.3rem; color:#FFE082; }
+
+  /* PRECIO */
+  .precio-box { background:linear-gradient(135deg,#1E0E00,#8D5524); border-radius:16px; padding:2rem; text-align:center; color:#fff; margin-top:1rem; }
+  .precio-box .precio { font-size:3rem; font-weight:900; color:#F5C400; }
+  .precio-box .sub { color:#FFE082; font-size:.9rem; margin-top:.3rem; }
+  .productos-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem; }
+  @media(max-width:500px){ .productos-grid { grid-template-columns:1fr; } }
+  .prod-card { background:linear-gradient(135deg,#FFF8DC,#FFE082); border-radius:12px; padding:1.2rem; border:2px solid #F5C400; text-align:center; }
+  .prod-card h4 { color:#8D5524; font-weight:700; margin-bottom:.5rem; }
+  .prod-card .precio-prod { font-size:1.6rem; font-weight:900; color:#E65100; }
+
+  /* EQUIPO */
+  .equipo-list { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1rem; }
+  .miembro { background:#FFF3C4; border:1.5px solid #FFB300; border-radius:20px; padding:.4rem 1rem; font-size:.88rem; font-weight:600; color:#4E2800; }
+
+  /* DATOS */
+  .datos-table { width:100%; border-collapse:collapse; margin-top:1rem; }
+  .datos-table th { background:#8D5524; color:#F5C400; padding:.7rem; text-align:left; font-size:.88rem; }
+  .datos-table td { padding:.65rem; border-bottom:1px solid #FFE082; font-size:.88rem; color:#4E2800; }
+  .datos-table tr:nth-child(even) td { background:#FFFDE7; }
+
+  /* FOOTER */
+  footer { background:#1E0E00; color:#FFE082; text-align:center; padding:2rem 1rem; margin-top:3rem; }
+  footer p { font-size:.85rem; line-height:1.8; }
+  footer strong { color:#F5C400; }
+
+  /* BADGE */
+  .badge { display:inline-block; background:#F5C400; color:#3E1F00; border-radius:20px; padding:.2rem .7rem; font-size:.75rem; font-weight:700; margin-left:.5rem; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div style="font-size:5rem;margin-bottom:.5rem;">🐝</div>
+  <h1>NEUROCHOCO</h1>
+  <h2>COMPLEMENTO ALIMENTARIO NATURAL</h2>
+  <p class="tagline">"El poder de los superalimentos peruanos en cada cucharada"</p>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#producto">Producto</a>
+  <a href="#beneficios">Beneficios</a>
+  <a href="#ingredientes">Ingredientes</a>
+  <a href="#datos">Datos</a>
+  <a href="#precio">Precios</a>
+  <a href="#equipo">Equipo</a>
+</nav>
+
+<!-- SECCIÓN PRODUCTO -->
+<section id="producto">
+  <div class="card">
+    <h3>🍫 ¿Qué es NeuroChoco?</h3>
+    <p>NeuroChoco es un <strong>suplemento alimentario natural</strong> elaborado con superalimentos peruanos, diseñado para combatir la anemia, mejorar la concentración y potenciar la memoria en niños, adolescentes y jóvenes.</p>
+    <p>Su innovador sabor a chocolate hace que el consumo sea placentero y voluntario, eliminando el rechazo típico de los suplementos tradicionales de hierro.</p>
+    <div class="stats">
+      <div class="stat"><div class="num">43.7%</div><div class="label">niños peruanos con anemia (ENDES 2024)</div></div>
+      <div class="stat"><div class="num">9%</div><div class="label">reducción del coeficiente intelectual por anemia</div></div>
+      <div class="stat"><div class="num">100%</div><div class="label">ingredientes naturales peruanos</div></div>
+      <div class="stat"><div class="num">31</div><div class="label">personas encuestadas lo validaron</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📦 Presentaciones disponibles <span class="badge">NUEVO</span></h3>
+    <div class="productos-grid">
+      <div class="prod-card">
+        <div style="font-size:2.5rem;">🍯</div>
+        <h4>Suplemento en Frasco</h4>
+        <p style="font-size:.82rem;color:#6D4C41;margin:.4rem 0;">Crema de superalimentos en frasco de vidrio ámbar 250ml. Presentación en caja regalo con moño.</p>
+        <div class="precio-prod">S/ 15.00</div>
+      </div>
+      <div class="prod-card">
+        <div style="font-size:2.5rem;">🍬</div>
+        <h4>Gomitas NeuroChoco</h4>
+        <p style="font-size:.82rem;color:#6D4C41;margin:.4rem 0;">Gomitas masticables con superalimentos. Divertidas y fáciles de consumir para los niños.</p>
+        <div class="precio-prod">S/ 5.00</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section id="beneficios">
+  <div class="card">
+    <h3>⚡ Beneficios del producto</h3>
+    <div class="beneficios-grid">
+      <div class="ben-item">
+        <div class="icon">🧠</div>
+        <h4>Mejora la Concentración y Memoria</h4>
+      </div>
+      <div class="ben-item">
+        <div class="icon">💪</div>
+        <h4>Combate la Anemia y Retención</h4>
+      </div>
+      <div class="ben-item">
+        <div class="icon">⚡</div>
+        <h4>Energía Natural Sostenida</h4>
+      </div>
+      <div class="ben-item">
+        <div class="icon">📚</div>
+        <h4>Mejora el Rendimiento Escolar</h4>
+      </div>
+      <div class="ben-item">
+        <div class="icon">🌿</div>
+        <h4>Sin Conservantes Artificiales</h4>
+      </div>
+      <div class="ben-item">
+        <div class="icon">🍫</div>
+        <h4>Sabor Agradable a Chocolate</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INGREDIENTES -->
+<section id="ingredientes">
+  <div class="card">
+    <h3>🌱 Ingredientes clave — La Tríada de Poder Peruano</h3>
+    <div class="ing-grid">
+      <div class="ing-card">
+        <div class="ing-icon">🌾</div>
+        <h4>Algarrobina</h4>
+        <p>Fuente natural de hierro, magnesio y calcio. Combate la anemia y aporta energía de bajo índice glucémico.</p>
+      </div>
+      <div class="ing-card">
+        <div class="ing-icon">🌿</div>
+        <h4>Maca Negra</h4>
+        <p>Mejora la memoria y el aprendizaje. Reduce la actividad de la acetilcolinesterasa, fortaleciendo el hipocampo.</p>
+      </div>
+      <div class="ing-card">
+        <div class="ing-icon">🥜</div>
+        <h4>Sacha Inchi</h4>
+        <p>Más del 45% de Omega-3. Mejora la fluidez neuronal y la velocidad de sinapsis cerebral.</p>
+      </div>
+      <div class="ing-card">
+        <div class="ing-icon">🍫</div>
+        <h4>Cacao Peruano</h4>
+        <p>Rico en flavonoides y antioxidantes. Activa circuitos de recompensa, garantizando adherencia voluntaria.</p>
+      </div>
+      <div class="ing-card">
+        <div class="ing-icon">🍯</div>
+        <h4>Miel de Abeja</h4>
+        <p>Endulzante natural. Aporta energía inmediata (glucosa/fructosa) y propiedades antimicrobianas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATOS -->
+<section id="datos">
+  <div class="card">
+    <h3>📋 Datos del producto</h3>
+    <table class="datos-table">
+      <tr><th>Campo</th><th>Detalle</th></tr>
+      <tr><td>Nombre</td><td><strong>NeuroChoco</strong></td></tr>
+      <tr><td>Categoría</td><td>Complemento Alimentario Natural</td></tr>
+      <tr><td>Fecha de fabricación</td><td>01/05/2026</td></tr>
+      <tr><td>Fecha de vencimiento</td><td>07/11/2026</td></tr>
+      <tr><td>Dosis</td><td>1 cucharada sopera al día</td></tr>
+      <tr><td>Almacenamiento</td><td>Lugar fresco y oscuro. No refrigerar.</td></tr>
+      <tr><td>Envase</td><td>Frasco de vidrio ámbar 250ml</td></tr>
+      <tr><td>Origen</td><td>100% Peruano — Superalimentos andinos y amazónicos</td></tr>
+      <tr><td>Sin</td><td>Conservantes artificiales · Colorantes · Azúcar refinada</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>🎯 Público objetivo</h3>
+    <ul>
+      <li><strong>Principal:</strong> Niños y adolescentes de 5 a 11 años con anemia o bajo rendimiento escolar.</li>
+      <li><strong>Decisores de compra:</strong> Madres de familia que buscan soluciones naturales para sus hijos.</li>
+      <li><strong>Secundario:</strong> Jóvenes universitarios y deportistas de 18 a 35 años que buscan alto rendimiento mental.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🛒 ¿Dónde conseguirlo?</h3>
+    <ul>
+      <li>🏪 Tiendas de productos naturales y bioferias</li>
+      <li>💊 Farmacias y boticas (sección de suplementos)</li>
+      <li>🏋️ Gimnasios y tiendas de nutrición deportiva</li>
+      <li>🏫 Módulos cercanos a centros educativos</li>
+      <li>📱 Redes sociales y venta directa</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRECIO -->
+<section id="precio">
+  <div class="card">
+    <h3>💰 Precios de venta</h3>
+    <div class="precio-box">
+      <p style="color:#FFE082;font-size:.9rem;margin-bottom:.5rem;">Rango validado por encuesta (51.6% de consumidores)</p>
+      <div class="precio">S/ 5.00 – S/ 15.00</div>
+      <div class="sub">Gomitas (S/5.00) · Frasco Suplemento 250ml (S/15.00)</div>
+      <p style="margin-top:1rem;color:#FFF9C4;font-size:.82rem;">Precio accesible sin sacrificar calidad artesanal</p>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section id="equipo">
+  <div class="card">
+    <h3>👥 Equipo NeuroChoco</h3>
+    <p style="margin-bottom:.8rem;"><strong>Asignatura:</strong> Creatividad Empresarial &nbsp;|&nbsp; <strong>Docente:</strong> Kusaka Chavez Milagritos Keiko</p>
+    <div class="equipo-list">
+      <span class="miembro">Acuña Guevara Priscila</span>
+      <span class="miembro">Becerra Alfaro Moises</span>
+      <span class="miembro">Fernández Cerna Jimena</span>
+      <span class="miembro">Pinto Bermúdez Rodolfo</span>
+      <span class="miembro">Puchale Palacios Jazmin</span>
+      <span class="miembro">Pulido Espíritu Anderson</span>
+    </div>
+    <p style="margin-top:1rem;"><strong>Universidad Tecnológica del Perú</strong> — Sede Chimbote, Ancash · 2026</p>
+  </div>
+
+  <div class="card">
+    <h3>📚 Respaldo científico</h3>
+    <ul>
+      <li>Gonzales, G. F. et al. (2011). Efecto de la maca negra sobre el aprendizaje y la memoria.</li>
+      <li>Fanali, C. et al. (2011). Caracterización química del aceite de Sacha Inchi. <em>Journal of Agricultural and Food Chemistry.</em></li>
+      <li>ENDES (2024). Encuesta Demográfica y de Salud Familiar — INEI Perú.</li>
+      <li>MINSA (2024). Plan Multisectorial para la Prevención y Reducción de la Anemia Materno Infantil 2024–2030.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-size:1.5rem;margin-bottom:.5rem;">🐝</p>
+  <p><strong>NEUROCHOCO</strong> — Complemento Alimentario Natural Peruano</p>
+  <p>Superalimentos Peruanos · 100% Natural · Sin Conservantes Artificiales</p>
+  <p style="margin-top:.8rem;color:#FFC857;">Universidad Tecnológica del Perú — Chimbote, Ancash · Creatividad Empresarial 2026</p>
+  <p style="margin-top:.5rem;font-style:italic;color:#A0622A;">"Nutre tu mente, fortalece tu cuerpo"</p>
+</footer>
+
+</body>
+</html>
